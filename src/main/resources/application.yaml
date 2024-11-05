@@ -1,0 +1,11 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: service1
+          uri: http://localhost:8080
+          predicates:
+            - MyCustom=orders
+          filters:
+            - RewritePath=/orders/(?<segment>.*), /api/orders/${segment}
+         
